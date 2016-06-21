@@ -31,4 +31,5 @@ public class MoneyBookTable extends BaseTable implements BaseColumns {
     public void createTable(SQLiteDatabase db) {
         db.execSQL(SQL_CREATE_TABLE);
     }
+
 }

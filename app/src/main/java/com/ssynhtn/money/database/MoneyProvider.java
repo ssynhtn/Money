@@ -10,6 +10,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.ssynhtn.money.BuildConfig;
+import com.ssynhtn.money.MoneyApplication;
 
 /**
  * Created by Garment on 2016/6/20.
@@ -38,6 +39,11 @@ public class MoneyProvider extends ContentProvider {
         mMoneyOpenHelper = MoneyOpenHelper.getInstance(getContext());
         return true;
     }
+
+    public static void notifyUris() {
+        MoneyApplication.getInstance().getContentResolver().notifyChange(BASE_CONTENT_URI, null);
+    }
+
 
     @Nullable
     @Override

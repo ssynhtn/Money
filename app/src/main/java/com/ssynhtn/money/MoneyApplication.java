@@ -13,7 +13,7 @@ public class MoneyApplication extends Application {
         sMoneyApplication = this;
     }
 
-    public synchronized MoneyApplication getInstance() {
+    public static synchronized MoneyApplication getInstance() {
         return sMoneyApplication;
     }
 }

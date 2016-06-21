@@ -107,8 +107,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public Fragment getFragment() {
-//                return new MoneyBookListFragment();
-                return SimpleTextFragment.newInstance("Account List");
+                return new MoneyBookListFragment();
             }
         });
 
