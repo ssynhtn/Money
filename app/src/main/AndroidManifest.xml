@@ -15,6 +15,13 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <activity android:name=".ui.test.TestSearchViewActivity">
+        </activity>
+        <activity
+            android:name=".ui.test.TestSearchViewActivityTwo"
+            android:label="@string/title_activity_test_search_view_activity_two"
+            android:theme="@style/AppTheme">
+        </activity>
     </application>
 
 </manifest>

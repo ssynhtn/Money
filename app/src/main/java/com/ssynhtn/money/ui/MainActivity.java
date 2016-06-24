@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -18,6 +19,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+    private Toolbar mToolbar;
     private ViewPager mViewPager;
     private MainAdapter mPagerAdapter;
     private LinearLayout mTabsLinearLayout;
@@ -27,6 +29,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(mToolbar);
 
         mViewPager = (ViewPager) findViewById(R.id.view_pager);
         mPagerAdapter = new MainAdapter(getSupportFragmentManager(), getTabItems());
@@ -126,6 +131,23 @@ public class MainActivity extends AppCompatActivity {
             public Fragment getFragment() {
 //                return new UserListFragment();
                 return SimpleTextFragment.newInstance("User List");
+            }
+        });
+
+        tabItems.add(new MainAdapter.TabItem() {
+            @Override
+            public String getTabName() {
+                return getString(R.string.test);
+            }
+
+            @Override
+            public int getIconDrawable() {
+                return R.drawable.tab_test;
+            }
+
+            @Override
+            public Fragment getFragment() {
+                return new TestFragment();
             }
         });
 
