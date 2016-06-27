@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.ssynhtn.money.R;
 import com.ssynhtn.money.ui.test.TestSearchViewActivity;
+import com.ssynhtn.money.ui.test.TestSearchViewActivityTwo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -64,6 +65,7 @@ public class TestFragment extends Fragment {
         List<TestItem> data = new ArrayList<>();
 
         data.add(new TestItem(TestSearchViewActivity.class.getSimpleName(), new Intent(getActivity(), TestSearchViewActivity.class)));
+        data.add(new TestItem(TestSearchViewActivityTwo.class.getSimpleName(), new Intent(getActivity(), TestSearchViewActivityTwo.class)));
 
         return data;
     }
