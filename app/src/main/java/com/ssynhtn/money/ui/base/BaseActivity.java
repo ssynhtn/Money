@@ -20,6 +20,10 @@ public class BaseActivity extends AppCompatActivity {
 
 
     protected void initToolbar() {
+        initToolbar(null);
+    }
+
+    protected void initToolbar(CharSequence title) {
         if (getSupportActionBar() == null) {
             Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 
@@ -30,6 +34,10 @@ public class BaseActivity extends AppCompatActivity {
 
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(isShowHomeAsUp());
+
+            if (title != null) {
+                getSupportActionBar().setTitle(title);
+            }
         }
     }
 

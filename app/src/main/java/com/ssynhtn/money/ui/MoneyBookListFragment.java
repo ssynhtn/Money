@@ -13,6 +13,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.ssynhtn.money.R;
@@ -21,7 +22,7 @@ import com.ssynhtn.money.database.MoneyProvider;
 import com.ssynhtn.money.ui.base.BaseFragment;
 
 
-public class MoneyBookListFragment extends BaseFragment implements LoaderManager.LoaderCallbacks<Cursor> {
+public class MoneyBookListFragment extends BaseFragment implements LoaderManager.LoaderCallbacks<Cursor>, AdapterView.OnItemClickListener {
 
     private static final int LOADER_ID_MONEY_LIST = 0;
 
@@ -38,6 +39,7 @@ public class MoneyBookListFragment extends BaseFragment implements LoaderManager
 
         mAdapter = new MoneyBookAdapter(getActivity(), null);
         mListView.setAdapter(mAdapter);
+        mListView.setOnItemClickListener(this);
 
         getLoaderManager().initLoader(LOADER_ID_MONEY_LIST, null, this);
 
@@ -86,5 +88,12 @@ public class MoneyBookListFragment extends BaseFragment implements LoaderManager
     @Override
     public void onLoaderReset(Loader<Cursor> loader) {
         mAdapter.swapCursor(null);
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        MoneyBookAdapter.ViewHolder viewHolder = (MoneyBookAdapter.ViewHolder) view.getTag();
+
+        RecordListActivity.start(getActivity(), viewHolder.mMoneyBook);
     }
 }

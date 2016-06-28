@@ -33,9 +33,11 @@ public class MoneyBookAdapter extends CursorAdapter {
         MoneyBook moneyBook = MoneyBook.fromCursor(cursor);
 
         viewHolder.mNameTextView.setText(moneyBook.mName);
+        viewHolder.mMoneyBook = moneyBook;
     }
 
     public static class ViewHolder {
+        public MoneyBook mMoneyBook;
         public TextView mNameTextView;
 
         public ViewHolder(View view) {

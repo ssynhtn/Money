@@ -5,10 +5,12 @@ import android.database.Cursor;
 
 import com.ssynhtn.money.database.MoneyBookTable;
 
+import java.io.Serializable;
+
 /**
  * Created by Garment on 2016/6/21.
  */
-public class MoneyBook {
+public class MoneyBook implements Serializable {
     public int mId;
     public String mName;
     public long mCreateTime;

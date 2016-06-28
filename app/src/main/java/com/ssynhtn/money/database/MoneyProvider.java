@@ -22,12 +22,15 @@ public class MoneyProvider extends ContentProvider {
     public static final Uri BASE_CONTENT_URI = Uri.parse("content://" + AUTHORITY);
 
     public static final Uri CONTENT_URI_MONEY_BOOKS = BASE_CONTENT_URI.buildUpon().appendEncodedPath(MoneyBookTable.TABLE_NAME).build();
+    public static final Uri CONTENT_URI_RECORDS = BASE_CONTENT_URI.buildUpon().appendEncodedPath(RecordTable.TABLE_NAME).build();
 
     public static final int CODE_MONEY_BOOKS = 100;
+    public static final int CODE_RECORDS = 101;
 
     private static UriMatcher sUriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
     static {
         sUriMatcher.addURI(AUTHORITY, MoneyBookTable.TABLE_NAME, CODE_MONEY_BOOKS);
+        sUriMatcher.addURI(AUTHORITY, RecordTable.TABLE_NAME, CODE_RECORDS);
 
     }
 
@@ -55,6 +58,11 @@ public class MoneyProvider extends ContentProvider {
         switch (code) {
             case CODE_MONEY_BOOKS: {
                 cursor = db.query(MoneyBookTable.TABLE_NAME, projection, selection, selectionArgs, null, null, sortOrder);
+                break;
+            }
+
+            case CODE_RECORDS: {
+                cursor = db.query(RecordTable.TABLE_NAME, projection, selection, selectionArgs, null, null, sortOrder);
                 break;
             }
 

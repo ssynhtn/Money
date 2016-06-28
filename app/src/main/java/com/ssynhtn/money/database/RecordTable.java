@@ -13,14 +13,19 @@ public class RecordTable extends BaseTable implements BaseColumns {
     public static final String COL_MONEY_BOOK_ID = "money_book_id";
     public static final String COL_MONEY = "money";
     public static final String COL_CONSUMPTION_TYPE_ID = "consumption_type_id";
+    public static final String COL_OWNER_ID = "owner_id";
+    public static final String COL_CREATE_TIME = "create_time";
 
     public static final String SQL_CREATE_TABLE = "create table " + TABLE_NAME + "(" +
             COL_RECORD_ID + " integer primary key, " +
             COL_MONEY_BOOK_ID + " integer, " +
             COL_MONEY + " integer, " +
             COL_CONSUMPTION_TYPE_ID + " integer, " +
-            "foreign key(" + COL_MONEY_BOOK_ID + ") references " + MoneyBookTable.TABLE_NAME + "(" + MoneyBookTable.COL_MONEY_BOOK_ID + ") on delete cascade, " +
-            "foreign key(" + COL_CONSUMPTION_TYPE_ID + ") references " + ConsumptionTypeTable.TABLE_NAME + "(" + ConsumptionTypeTable.COL_CONSUMPTION_TYPE_ID + ") on delete set null" +
+            COL_OWNER_ID + " integer, " +
+            COL_CREATE_TIME + " integer, " +
+            "foreign key(" + COL_MONEY_BOOK_ID + ") references " + MoneyBookTable.TABLE_NAME + "(" + MoneyBookTable.COL_MONEY_BOOK_ID + ") on delete set null, " +
+            "foreign key(" + COL_CONSUMPTION_TYPE_ID + ") references " + ConsumptionTypeTable.TABLE_NAME + "(" + ConsumptionTypeTable.COL_CONSUMPTION_TYPE_ID + ") on delete set null, " +
+            "foreign key(" + COL_OWNER_ID + ") references " + UserTable.TABLE_NAME + "(" + UserTable.COL_USER_ID + ") on delete set null" +
             ");";
 
 
