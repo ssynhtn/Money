@@ -1,5 +1,8 @@
 package com.ssynhtn.money.ui.base;
 
+import android.support.v4.app.DialogFragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
@@ -13,6 +16,7 @@ import com.ssynhtn.money.utils.ToastUtils;
 public class BaseActivity extends AppCompatActivity {
 
     private static final String TAG = BaseActivity.class.getSimpleName();
+    private static final String TAG_DIALOG = "TAG_DIALOG_";
 
 
     protected void initToolbar() {
@@ -53,4 +57,26 @@ public class BaseActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    protected void showDialog(DialogFragment dialogFragment, String tag) {
+        dismissDialogIfExists(tag);
+        FragmentManager fm = getSupportFragmentManager();
+
+        FragmentTransaction ft = fm.beginTransaction();
+        dialogFragment.show(ft, tag);
+    }
+
+    private void dismissDialogIfExists(String tag) {
+        FragmentManager fm = getSupportFragmentManager();
+
+        DialogFragment dialogFragment = (DialogFragment) fm.findFragmentByTag(tag);
+        if (dialogFragment != null) {
+            dialogFragment.dismiss();
+        }
+    }
+
+    protected String buildTagForDialog(Class<? extends DialogFragment> clazz) {
+        return TAG_DIALOG + clazz.getCanonicalName();
+    }
+
 }

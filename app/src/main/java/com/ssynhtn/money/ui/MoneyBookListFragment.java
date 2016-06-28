@@ -6,7 +6,11 @@ import android.os.Bundle;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
@@ -20,6 +24,8 @@ import com.ssynhtn.money.ui.base.BaseFragment;
 public class MoneyBookListFragment extends BaseFragment implements LoaderManager.LoaderCallbacks<Cursor> {
 
     private static final int LOADER_ID_MONEY_LIST = 0;
+
+    private static final String TAG = MoneyBookListFragment.class.getSimpleName();
     private ListView mListView;
     private MoneyBookAdapter mAdapter;
 
@@ -43,8 +49,25 @@ public class MoneyBookListFragment extends BaseFragment implements LoaderManager
     }
 
     @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_fragment_money_book_list, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_add_money_book) {
+            showDialog(new AddMoneyBookDialogFragment());
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+
+    @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
         String[] projection = MoneyBookTable.getInstance().getFullColumns();
+        Log.d(TAG, "projection: " + projection);
         String selection = null;
         String[] selectionArgs = null;
         String order = MoneyBookTable.COL_MONEY_BOOK_ID;
@@ -54,6 +77,9 @@ public class MoneyBookListFragment extends BaseFragment implements LoaderManager
 
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+        if (data != null) {
+            Log.d(TAG, "cursor count: " + data.getCount());
+        }
         mAdapter.swapCursor(data);
     }
 

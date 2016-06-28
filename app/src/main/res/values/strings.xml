@@ -10,4 +10,8 @@
     <string name="action_search">Search</string>
     <string name="toast_error_msg">出错了: %1$s</string>
     <string name="toast_universal_error_msg">抱歉，出错了</string>
+    <string name="action_add_money_book">添加账本</string>
+    <string name="activity_add_money_book">添加账本</string>
+    <string name="hint_money_book_name">名称</string>
+    <string name="title_new_money_book">新建账本</string>
 </resources>

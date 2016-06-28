@@ -2,7 +2,9 @@
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
-             tools:context=".ui.MoneyBookListFragment">
+             tools:context=".ui.MoneyBookListFragment"
+             android:background="@android:color/white"
+    >
 
     <ListView
         android:id="@+id/list_view"

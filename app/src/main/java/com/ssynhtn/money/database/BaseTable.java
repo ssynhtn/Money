@@ -30,7 +30,10 @@ public class BaseTable {
             String name = field.getName();
 
             if (Modifier.isStatic(modifier) && Modifier.isFinal(modifier) && name.startsWith("COL")) {
-                columns.add(tableName + "." + name);
+                try {
+                    columns.add(tableName + "." + field.get(null));
+                } catch (IllegalAccessException ignored) {
+                }
             }
         }
 
