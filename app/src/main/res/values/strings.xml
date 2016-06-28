@@ -8,4 +8,6 @@
     <string name="test">测试</string>
     <string name="title_activity_test_search_view_activity_two">TestSearchViewActivityTwo</string>
     <string name="action_search">Search</string>
+    <string name="toast_error_msg">出错了: %1$s</string>
+    <string name="toast_universal_error_msg">抱歉，出错了</string>
 </resources>

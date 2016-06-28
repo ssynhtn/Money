@@ -2,15 +2,15 @@ package com.ssynhtn.money.ui;
 
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.ssynhtn.money.R;
+import com.ssynhtn.money.ui.base.BaseFragment;
 
-public class SimpleTextFragment extends Fragment {
+public class SimpleTextFragment extends BaseFragment {
     private static final String ARG_TEXT = "ARG_TEXT";
 
     private String mText;

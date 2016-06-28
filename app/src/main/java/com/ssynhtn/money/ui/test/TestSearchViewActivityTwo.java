@@ -1,19 +1,18 @@
 package com.ssynhtn.money.ui.test;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 
 import com.ssynhtn.money.R;
+import com.ssynhtn.money.ui.base.BaseActivity;
 
-public class TestSearchViewActivityTwo extends AppCompatActivity {
+public class TestSearchViewActivityTwo extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test_search_view_activity_two);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+
+        initToolbar();
 
     }
 

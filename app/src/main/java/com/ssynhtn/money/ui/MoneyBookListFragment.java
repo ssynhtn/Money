@@ -3,7 +3,6 @@ package com.ssynhtn.money.ui;
 
 import android.database.Cursor;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
@@ -15,9 +14,10 @@ import android.widget.ListView;
 import com.ssynhtn.money.R;
 import com.ssynhtn.money.database.MoneyBookTable;
 import com.ssynhtn.money.database.MoneyProvider;
+import com.ssynhtn.money.ui.base.BaseFragment;
 
 
-public class MoneyBookListFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> {
+public class MoneyBookListFragment extends BaseFragment implements LoaderManager.LoaderCallbacks<Cursor> {
 
     private static final int LOADER_ID_MONEY_LIST = 0;
     private ListView mListView;

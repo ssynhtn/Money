@@ -5,21 +5,21 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.ssynhtn.money.R;
+import com.ssynhtn.money.ui.base.BaseActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
-    private Toolbar mToolbar;
+    private static final String TAG = MainActivity.class.getSimpleName();
+
     private ViewPager mViewPager;
     private MainAdapter mPagerAdapter;
     private LinearLayout mTabsLinearLayout;
@@ -30,8 +30,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mToolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(mToolbar);
+        initToolbar();
 
         mViewPager = (ViewPager) findViewById(R.id.view_pager);
         mPagerAdapter = new MainAdapter(getSupportFragmentManager(), getTabItems());
@@ -184,5 +183,10 @@ public class MainActivity extends AppCompatActivity {
             public Fragment getFragment();
         }
 
+    }
+
+    @Override
+    protected boolean isShowHomeAsUp() {
+        return false;
     }
 }
