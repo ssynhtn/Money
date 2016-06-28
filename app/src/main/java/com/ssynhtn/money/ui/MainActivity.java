@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.ssynhtn.money.R;
 import com.ssynhtn.money.ui.base.BaseActivity;
+import com.ssynhtn.money.ui.test.TestFragment;
 
 import java.util.ArrayList;
 import java.util.List;

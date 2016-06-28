@@ -1,4 +1,4 @@
-package com.ssynhtn.money.ui;
+package com.ssynhtn.money.ui.test;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,8 +14,6 @@ import android.widget.TextView;
 
 import com.ssynhtn.money.R;
 import com.ssynhtn.money.ui.base.BaseFragment;
-import com.ssynhtn.money.ui.test.TestSearchViewActivity;
-import com.ssynhtn.money.ui.test.TestSearchViewActivityTwo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +26,10 @@ public class TestFragment extends BaseFragment {
     public static class TestItem {
         public String mTitle;
         public Intent mIntent;
+
+        public TestItem(Context context, Class<?> clazz) {
+            this(clazz.getSimpleName(), new Intent(context, clazz));
+        }
 
         public TestItem(String title, Intent intent) {
             mTitle = title;
@@ -65,8 +67,9 @@ public class TestFragment extends BaseFragment {
     private List<TestItem> createData() {
         List<TestItem> data = new ArrayList<>();
 
-        data.add(new TestItem(TestSearchViewActivity.class.getSimpleName(), new Intent(getActivity(), TestSearchViewActivity.class)));
-        data.add(new TestItem(TestSearchViewActivityTwo.class.getSimpleName(), new Intent(getActivity(), TestSearchViewActivityTwo.class)));
+        data.add(new TestItem(getActivity(), TestSearchViewActivity.class));
+        data.add(new TestItem(getActivity(), TestSearchViewActivityTwo.class));
+        data.add(new TestItem(getActivity(), TestFloatingActionButtonActivity.class));
 
         return data;
     }

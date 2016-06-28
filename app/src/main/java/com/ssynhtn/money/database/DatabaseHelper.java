@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.ssynhtn.money.MoneyApplication;
+import com.ssynhtn.money.model.Record;
 
 /**
  * Created by Garment on 2016/6/20.
@@ -44,6 +45,10 @@ public class DatabaseHelper {
             db.endTransaction();
             MoneyProvider.notifyUris();
         }
+    }
+
+    public void addRecord(Record record) {
+
     }
 
 

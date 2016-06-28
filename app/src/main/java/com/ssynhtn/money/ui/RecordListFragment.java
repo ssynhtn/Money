@@ -3,6 +3,7 @@ package com.ssynhtn.money.ui;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
@@ -31,6 +32,8 @@ public class RecordListFragment extends BaseFragment implements LoaderManager.Lo
     private ListView mListView;
     private RecordAdapter mRecordAdapter;
 
+    private FloatingActionButton mFloatingActionButton;
+
     public static RecordListFragment newInstance(MoneyBook moneyBook) {
         Bundle args = new Bundle();
         args.putSerializable(EXTRA_MONEY_BOOK, moneyBook);
@@ -55,6 +58,14 @@ public class RecordListFragment extends BaseFragment implements LoaderManager.Lo
         mListView = (ListView) view.findViewById(R.id.list_view);
         mRecordAdapter = new RecordAdapter(getActivity());
         mListView.setAdapter(mRecordAdapter);
+
+        mFloatingActionButton = (FloatingActionButton) view.findViewById(R.id.fab);
+        mFloatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AddRecordActivity.start(getActivity(), mMoneyBook);
+            }
+        });
 
         getLoaderManager().initLoader(LOADER_ID_RECORDS, null, this);
 

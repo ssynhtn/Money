@@ -29,9 +29,16 @@
             android:authorities="${applicationId}"
             android:exported="false"/>
 
-        <activity android:name=".ui.RecordListActivity"
-                  android:label="@string/activity_record_list"
-            >
+        <activity
+            android:name=".ui.RecordListActivity"
+            android:label="@string/activity_record_list">
+        </activity>
+        <activity
+            android:name=".ui.AddRecordActivity"
+            android:label="@string/title_activity_add_record"
+            android:theme="@style/AppTheme">
+        </activity>
+        <activity android:name=".ui.test.TestFloatingActionButtonActivity">
         </activity>
     </application>
 

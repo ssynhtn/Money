@@ -15,4 +15,5 @@
     <string name="hint_money_book_name">名称</string>
     <string name="title_new_money_book">新建账本</string>
     <string name="activity_record_list">记录</string>
+    <string name="title_activity_add_record">AddRecordActivity</string>
 </resources>
