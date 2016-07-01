@@ -16,4 +16,8 @@
     <string name="title_new_money_book">新建账本</string>
     <string name="activity_record_list">记录</string>
     <string name="title_activity_add_record">AddRecordActivity</string>
+    <string name="label_date">日期</string>
+    <string name="label_time">时间</string>
+    <string name="spinner_prompt">请选择</string>
+    <string name="show_window">Show Window</string>
 </resources>

@@ -70,6 +70,9 @@ public class TestFragment extends BaseFragment {
         data.add(new TestItem(getActivity(), TestSearchViewActivity.class));
         data.add(new TestItem(getActivity(), TestSearchViewActivityTwo.class));
         data.add(new TestItem(getActivity(), TestFloatingActionButtonActivity.class));
+        data.add(new TestItem(getActivity(), TestCardViewActivity.class));
+        data.add(new TestItem(getActivity(), TestSpinnerActivity.class));
+        data.add(new TestItem(getActivity(), TestPopupWindowActivity.class));
 
         return data;
     }
