@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    android:id="@+id/frame_layout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.test.TestViewAnimatorActivity">
+
+
+    <Button
+        android:id="@+id/button_flip"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal|bottom"
+        android:text="Flip"
+        />
+
+    <ViewAnimator
+        android:id="@+id/viewFlipper"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/darker_gray"
+        android:layout_gravity="center_horizontal|bottom"
+        >
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            />
+
+        <TextView
+            android:id="@+id/text_view_app"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            android:gravity="center"
+            android:padding="16dp"
+            android:textColor="@android:color/holo_blue_bright"
+            />
+
+        <!--<TextView-->
+            <!--android:id="@+id/text_view_hello"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="@string/hello_world"-->
+            <!--android:gravity="center"-->
+            <!--android:padding="16dp"-->
+            <!--/>-->
+
+    </ViewAnimator>
+
+
+
+
+</FrameLayout>

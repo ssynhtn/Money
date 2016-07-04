@@ -46,6 +46,12 @@
         </activity>
         <activity android:name=".ui.test.TestPopupWindowActivity">
         </activity>
+        <activity android:name=".ui.test.TestViewAnimatorActivity">
+        </activity>
+        <activity android:name=".ui.test.TestAnimationActivity">
+        </activity>
+        <activity android:name=".ui.test.TestAnimatorActivity">
+        </activity>
     </application>
 
 </manifest>

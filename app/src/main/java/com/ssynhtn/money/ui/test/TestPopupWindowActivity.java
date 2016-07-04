@@ -1,10 +1,13 @@
 package com.ssynhtn.money.ui.test;
 
+import android.animation.Animator;
+import android.animation.AnimatorInflater;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -39,15 +42,24 @@ public class TestPopupWindowActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 showWindow(mButton);
+
+//                animateView(mButton);
             }
         });
         mBottomView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showWindow(mBottomView);
+                showWindow(findViewById(android.R.id.content));
             }
         });
 
+
+    }
+
+    private void animateView(View view) {
+        Animator animator = AnimatorInflater.loadAnimator(this, R.animator.expand_then_shrink);
+        animator.setTarget(view);
+        animator.start();
     }
 
     private void showWindow(View anchorView) {
@@ -67,6 +79,7 @@ public class TestPopupWindowActivity extends AppCompatActivity {
         window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         window.setOutsideTouchable(true);
         window.setFocusable(true);
+        window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
 
 //        Log.d(TAG, "button token: " + mButton.getWindowToken() + ", bottomViewToken: " + mBottomView.getWindowToken() + ", contentViewToken: " + findViewById(android.R.id.content).getWindowToken());
 //        window.showAtLocation(mButton, Gravity.LEFT|Gravity.TOP, 0, 0);
@@ -77,8 +90,11 @@ public class TestPopupWindowActivity extends AppCompatActivity {
 //            window.showAsDropDown(mButton, 0, 0);
 //        }
 
-        window.showAsDropDown(anchorView, getIntFromEditText(mEditTextOffsetX), getIntFromEditText(mEditTextOffsetY));
-        window.setAnimationStyle(android.R.style.Animation_D);
+//        window.showAsDropDown(anchorView, getIntFromEditText(mEditTextOffsetX), getIntFromEditText(mEditTextOffsetY));
+//        window.showAtLocation(anchorView, Gravity.TOP | Gravity.LEFT, 0, 0);
+        window.setAnimationStyle(R.style.PopupAnimationPushUp);
+        window.showAtLocation(anchorView, Gravity.BOTTOM | Gravity.LEFT, 0, 0);
+//        window.setAnimationStyle(android.R.style.Animation_D);
     }
 
     private int getIntFromEditText(EditText editText) {

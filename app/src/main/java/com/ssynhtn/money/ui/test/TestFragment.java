@@ -73,6 +73,9 @@ public class TestFragment extends BaseFragment {
         data.add(new TestItem(getActivity(), TestCardViewActivity.class));
         data.add(new TestItem(getActivity(), TestSpinnerActivity.class));
         data.add(new TestItem(getActivity(), TestPopupWindowActivity.class));
+        data.add(new TestItem(getActivity(), TestViewAnimatorActivity.class));
+        data.add(new TestItem(getActivity(), TestAnimationActivity.class));
+        data.add(new TestItem(getActivity(), TestAnimatorActivity.class));
 
         return data;
     }

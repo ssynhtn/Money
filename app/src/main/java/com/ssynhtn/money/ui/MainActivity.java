@@ -1,30 +1,47 @@
 package com.ssynhtn.money.ui;
 
+import android.animation.Animator;
+import android.animation.AnimatorInflater;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.AnimatorSet;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.OvershootInterpolator;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.ssynhtn.money.R;
+import com.ssynhtn.money.custom.OnMultipleClickListener;
 import com.ssynhtn.money.ui.base.BaseActivity;
 import com.ssynhtn.money.ui.test.TestFragment;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class MainActivity extends BaseActivity {
 
     private static final String TAG = MainActivity.class.getSimpleName();
+    private static final int NUMBER_OF_CLICKS_TO_TRIGGER_POPUP = 10;
 
     private ViewPager mViewPager;
     private MainAdapter mPagerAdapter;
     private LinearLayout mTabsLinearLayout;
     private List<View> mTabs;
+
+    private View mPopupView;
+    private View mPopupBackgroundView;
+    private View mPopupContainer;
+
+    private Set<Animator> mAnimators = new HashSet<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +79,56 @@ public class MainActivity extends BaseActivity {
 
         mTabs.get(mViewPager.getCurrentItem()).setSelected(true);
 
+        mPopupView = findViewById(R.id.frame_layout_popup);
+        mPopupBackgroundView = findViewById(R.id.popup_background);
+        mPopupContainer = findViewById(R.id.popup_container);
+        mPopupContainer.setVisibility(View.GONE);
+        mPopupBackgroundView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                hidePopupView();
+            }
+        });
+
+        LinearLayout imageContainer = (LinearLayout) mPopupView.findViewById(R.id.image_container);
+        for (int i = 0; i < imageContainer.getChildCount(); i++) {
+            View child = imageContainer.getChildAt(i);
+            final int finalI = i;
+            child.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    makeToast("click on view position; " + finalI);
+                }
+            });
+        }
+
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        if (isAnimatingAndShouldBlockTouch()) {
+            return true;
+        }
+
+        return super.dispatchTouchEvent(ev);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (isAnimatingAndShouldBlockTouch()) {
+            return;
+        }
+
+        if (mPopupContainer.getVisibility() != View.GONE) {
+            hidePopupView();
+            return;
+        }
+
+        super.onBackPressed();
+    }
+
+    private boolean isAnimatingAndShouldBlockTouch() {
+        return !mAnimators.isEmpty();
     }
 
     private void createTabs() {
@@ -75,17 +142,101 @@ public class MainActivity extends BaseActivity {
             mTabsLinearLayout.addView(tab);
 
             configureTab(tab, tabItem);
-            tab.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    mViewPager.setCurrentItem(position);
-                }
-            });
+            if (position != mPagerAdapter.getCount() - 1) {
+                tab.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        mViewPager.setCurrentItem(position);
+                    }
+                });
+            } else {
+                tab.setOnClickListener(new OnMultipleClickListener(tab, NUMBER_OF_CLICKS_TO_TRIGGER_POPUP, new OnMultipleClickListener.OnConsecutiveClickCallback() {
+                    @Override
+                    public void onConsecutiveClick(View view, OnMultipleClickListener listener, int numberOfClicks, int numberOfClicksRequired) {
+                        mViewPager.setCurrentItem(position);
+                        if (numberOfClicks == numberOfClicksRequired) {
+                            showPopupView();
+                        }
+                    }
+                }));
+            }
 
             mTabs.add(tab);
 
 
         }
+    }
+
+    private void showPopupView() {
+        mPopupContainer.setVisibility(View.VISIBLE);
+
+        Animator pushIn = AnimatorInflater.loadAnimator(this, R.animator.push_up_in);
+        pushIn.setTarget(mPopupView);
+        pushIn.setInterpolator(new OvershootInterpolator());
+
+        Animator fadeIn = AnimatorInflater.loadAnimator(this, R.animator.fade_in);
+        fadeIn.setTarget(mPopupBackgroundView);
+
+        AnimatorSet set = new AnimatorSet();
+        set.playTogether(pushIn, fadeIn);
+
+        set.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+                super.onAnimationStart(animation);
+
+                mAnimators.add(animation);
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                super.onAnimationEnd(animation);
+
+                mAnimators.remove(animation);
+            }
+        });
+
+        mAnimators.add(set);
+        set.start();
+
+    }
+
+    private void hidePopupView() {
+        Animator pushOut = AnimatorInflater.loadAnimator(this, R.animator.push_down_out);
+        pushOut.setTarget(mPopupView);
+        pushOut.setInterpolator(new AccelerateInterpolator());
+        pushOut.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                super.onAnimationEnd(animation);
+                mPopupContainer.setVisibility(View.GONE);
+            }
+        });
+
+        Animator fadeOut = AnimatorInflater.loadAnimator(this, R.animator.fade_out);
+        fadeOut.setTarget(mPopupBackgroundView);
+
+        AnimatorSet set = new AnimatorSet();
+        set.playTogether(pushOut, fadeOut);
+
+        set.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+                super.onAnimationStart(animation);
+
+                mAnimators.add(animation);
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                super.onAnimationEnd(animation);
+
+                mAnimators.remove(animation);
+            }
+        });
+
+        mAnimators.add(set);
+        set.start();
     }
 
     private void configureTab(View tab, MainAdapter.TabItem tabItem) {
