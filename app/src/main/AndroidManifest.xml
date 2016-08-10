@@ -34,9 +34,10 @@
             android:label="@string/activity_record_list">
         </activity>
         <activity
-            android:name=".ui.AddRecordActivity"
-            android:label="@string/title_activity_add_record"
-            android:theme="@style/AppTheme">
+            android:name=".ui.EditRecordActivity"
+            android:label="@string/title_activity_edit_record"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateUnchanged">
         </activity>
         <activity android:name=".ui.test.TestFloatingActionButtonActivity">
         </activity>
@@ -51,6 +52,20 @@
         <activity android:name=".ui.test.TestAnimationActivity">
         </activity>
         <activity android:name=".ui.test.TestAnimatorActivity">
+        </activity>
+        <activity android:name=".ui.test.TestLinedEditText">
+        </activity>
+        <activity android:name=".ui.test.TestShapeDrawableActivity">
+        </activity>
+        <activity android:name=".ui.test.TestAnimationDrawableActivity">
+        </activity>
+        <activity android:name=".ui.test.TestUserAgentActivity">
+        </activity>
+        <activity android:name=".ui.test.TestLinkifyActivity">
+        </activity>
+        <activity android:name=".ui.test.TestEditTextActivity">
+        </activity>
+        <activity android:name=".ui.test.TestRecyclerViewActivity">
         </activity>
     </application>
 

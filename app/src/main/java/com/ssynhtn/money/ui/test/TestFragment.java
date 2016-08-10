@@ -76,6 +76,13 @@ public class TestFragment extends BaseFragment {
         data.add(new TestItem(getActivity(), TestViewAnimatorActivity.class));
         data.add(new TestItem(getActivity(), TestAnimationActivity.class));
         data.add(new TestItem(getActivity(), TestAnimatorActivity.class));
+        data.add(new TestItem(getActivity(), TestLinedEditText.class));
+        data.add(new TestItem(getActivity(), TestShapeDrawableActivity.class));
+        data.add(new TestItem(getActivity(), TestAnimationDrawableActivity.class));
+        data.add(new TestItem(getActivity(), TestUserAgentActivity.class));
+        data.add(new TestItem(getActivity(), TestLinkifyActivity.class));
+        data.add(new TestItem(getActivity(), TestEditTextActivity.class));
+        data.add(new TestItem(getActivity(), TestRecyclerViewActivity.class));
 
         return data;
     }

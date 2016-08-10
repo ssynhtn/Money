@@ -63,7 +63,7 @@ public class RecordListFragment extends BaseFragment implements LoaderManager.Lo
         mFloatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AddRecordActivity.start(getActivity(), mMoneyBook);
+                EditRecordActivity.start(getActivity(), mMoneyBook);
             }
         });
 

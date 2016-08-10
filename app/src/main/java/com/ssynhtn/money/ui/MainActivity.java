@@ -30,7 +30,7 @@ import java.util.Set;
 public class MainActivity extends BaseActivity {
 
     private static final String TAG = MainActivity.class.getSimpleName();
-    private static final int NUMBER_OF_CLICKS_TO_TRIGGER_POPUP = 10;
+    private static final int NUMBER_OF_CLICKS_TO_TRIGGER_POPUP = 5;
 
     private ViewPager mViewPager;
     private MainAdapter mPagerAdapter;
@@ -101,6 +101,8 @@ public class MainActivity extends BaseActivity {
                 }
             });
         }
+
+//        getSupportFragmentManager().beginTransaction().add(null, null).setCustomAnimations()
 
     }
 

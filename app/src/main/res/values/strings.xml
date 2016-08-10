@@ -15,9 +15,12 @@
     <string name="hint_money_book_name">名称</string>
     <string name="title_new_money_book">新建账本</string>
     <string name="activity_record_list">记录</string>
-    <string name="title_activity_add_record">AddRecordActivity</string>
+    <string name="title_activity_edit_record">记账</string>
     <string name="label_date">日期</string>
     <string name="label_time">时间</string>
     <string name="spinner_prompt">请选择</string>
     <string name="show_window">Show Window</string>
+    <string name="button_comfirm">确认</string>
+    <string name="button_cancel">取消</string>
+    <string name="ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
 </resources>

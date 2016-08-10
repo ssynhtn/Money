@@ -1,11 +1,14 @@
 package com.ssynhtn.money.ui.base;
 
+import android.content.Context;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 
 import com.ssynhtn.money.R;
 import com.ssynhtn.money.utils.ToastUtils;
@@ -74,7 +77,7 @@ public class BaseActivity extends AppCompatActivity {
         dialogFragment.show(ft, tag);
     }
 
-    private void dismissDialogIfExists(String tag) {
+    protected void dismissDialogIfExists(String tag) {
         FragmentManager fm = getSupportFragmentManager();
 
         DialogFragment dialogFragment = (DialogFragment) fm.findFragmentByTag(tag);
@@ -85,6 +88,15 @@ public class BaseActivity extends AppCompatActivity {
 
     protected String buildTagForDialog(Class<? extends DialogFragment> clazz) {
         return TAG_DIALOG + clazz.getCanonicalName();
+    }
+
+    protected void hideSoftKeyboard() {
+        View focusedView = getCurrentFocus();
+
+        if (focusedView != null) {
+            InputMethodManager manager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            manager.hideSoftInputFromWindow(focusedView.getWindowToken(), 0);
+        }
     }
 
 }
